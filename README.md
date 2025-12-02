@@ -11,7 +11,6 @@ This project fulfills the requirements of **CSCE 4502 - Assignment #2**.
 | Type | Link | Notes |
 | :--- | :--- | :--- |
 | **Live App Link** | [**INSERT YOUR LIVE NETLIFY OR GITHUB PAGES LINK HERE**] | Required for submission. |
-| **GitHub Repository** | [**INSERT YOUR PUBLIC GITHUB REPO LINK HERE**] | Must be public and well-organized. |
 
 ---
 
