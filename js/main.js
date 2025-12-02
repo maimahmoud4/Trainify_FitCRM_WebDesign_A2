@@ -198,18 +198,21 @@ async function initView() {
   exerciseList.innerHTML = '<li>Loading exercises...</li>';
 
   try {
-    // UPDATED: Switching to a more stable public proxy service (corsproxy.io)
+    // FINAL FIX: Switching to a different, reliable public CORS-Anywhere Demo server.
     const targetUrl = 'https://wger.de/api/v2/exercise/?language=2&limit=5';
-    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`;
+    // Note: The CORS-Anywhere Demo server URL structure.
+    const proxyUrl = `https://cors-anywhere.herokuapp.com/${targetUrl}`;
 
+    // Note: This proxy requires a specific header to activate its demo mode.
     const response = await fetch(proxyUrl, {
         headers: {
-            'x-requested-with': 'XMLHttpRequest' // Required by this proxy service
+            'x-requested-with': 'XMLHttpRequest' 
         }
     });
     
     if (!response.ok) throw new Error('Network response was not ok');
     
+    // The response is the raw JSON from Wger
     const data = await response.json();
     
     exerciseList.innerHTML = '';
@@ -231,8 +234,8 @@ async function initView() {
 
   } catch (error) {
     console.error("Fetch error:", error);
-    // User-friendly message explaining the potential issue
-    exerciseList.innerHTML = '<li>Error loading exercises. (Possible CORS/Proxy issue). Please try again after deploying your app online.</li>';
+    // Final, non-technical error message for the user
+    exerciseList.innerHTML = '<li>Error loading exercises. The public proxy service may be temporarily unavailable.</li>';
   }
 }
 
