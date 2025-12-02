@@ -90,7 +90,7 @@
 
         <div class="form-actions">
           <button type="reset" class="btn ghost">Reset</button>
-          <!-- placeholder — will show a small confirmation -->
+        
           <button type="button" class="btn primary" id="saveBtn"><span>🔍</span> Add Client</button>
         </div>
 
@@ -101,23 +101,7 @@
 
   <footer class="container footer">© 2025 Trainify. All Rights Reserved.</footer>
 
-  <script>
-    //  placeholder behavior
-    document.getElementById('saveBtn').addEventListener('click', function(){
-      
-      const name = document.getElementById('fullName').value.trim();
-      if (!name) {
-        alert('Please enter client full name (placeholder validation).');
-        return;
-      }
-      alert('Client added (placeholder). The data is not persisted on a server.');
-      document.getElementById('clientForm').reset();
-    });
-
-    // prevent enter on search to submit any forms accidentally
-    document.querySelectorAll('.search-input').forEach(input => {
-      input.addEventListener('keydown', e => { if(e.key === 'Enter') e.preventDefault(); });
-    });
-  </script>
+<script src="js/main.js"></script>
+</body>
 </body>
 </html>

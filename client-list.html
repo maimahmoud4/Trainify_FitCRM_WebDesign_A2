@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Trainify — Client List</title>
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Topbar -->
   <header class="topbar">
     <div class="container topbar-inner">
       <a class="brand" href="index.html">
@@ -32,7 +30,6 @@
     </div>
   </header>
 
-  <!-- Client list card -->
   <main class="container page-card">
     <div class="card list-card">
       <div class="card-header">
@@ -42,7 +39,7 @@
 
       <div class="list-tools">
         <input id="nameSearch" class="input-light" placeholder="Search by Name">
-        <div class="client-count"><strong id="count">10</strong> Clients</div>
+        <div class="client-count"><strong id="count">0</strong> Clients</div>
       </div>
 
       <div class="table-wrap">
@@ -58,23 +55,6 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 10 sample rows -->
-            <tr>
-              <td>Mai</td><td>mai@example.com</td><td>+20 111 861 6508</td><td>Weight Loss</td><td>Active</td>
-              <td class="td-actions"><button class="action edit" onclick="placeholder('edit')">✏️</button><button class="action del" onclick="placeholder('delete')">🗑️</button></td>
-            </tr>
-            <tr>
-              <td>Walid</td><td>walid@example.com</td><td>+20 100 111 2222</td><td>Muscle Gain</td><td>Active</td>
-              <td class="td-actions"><button class="action edit" onclick="placeholder('edit')">✏️</button><button class="action del" onclick="placeholder('delete')">🗑️</button></td>
-            </tr>
-            <tr><td>Sarah</td><td>sarah@example.com</td><td>+20 100 222 3333</td><td>General Fitness</td><td>Active</td><td class="td-actions"><button class="action edit" onclick="placeholder('edit')">✏️</button><button class="action del" onclick="placeholder('delete')">🗑️</button></td></tr>
-            <tr><td>Khaled</td><td>khaled@example.com</td><td>+20 100 333 4444</td><td>Weight Loss</td><td>Expired</td><td class="td-actions"><button class="action edit" onclick="placeholder('edit')">✏️</button><button class="action del" onclick="placeholder('delete')">🗑️</button></td></tr>
-            <tr><td>Mona</td><td>mona@example.com</td><td>+20 100 444 5555</td><td>Muscle Gain</td><td>Active</td><td class="td-actions"><button class="action edit" onclick="placeholder('edit')">✏️</button><button class="action del" onclick="placeholder('delete')">🗑️</button></td></tr>
-            <tr><td>Samy</td><td>samy@example.com</td><td>+20 100 555 6666</td><td>General Fitness</td><td>Active</td><td class="td-actions"><button class="action edit" onclick="placeholder('edit')">✏️</button><button class="action del" onclick="placeholder('delete')">🗑️</button></td></tr>
-            <tr><td>Ramy</td><td>ramy@example.com</td><td>+20 100 666 7777</td><td>Weight Loss</td><td>Active</td><td class="td-actions"><button class="action edit" onclick="placeholder('edit')">✏️</button><button class="action del" onclick="placeholder('delete')">🗑️</button></td></tr>
-            <tr><td>Hana</td><td>hana@example.com</td><td>+20 100 777 8888</td><td>Muscle Gain</td><td>Expired</td><td class="td-actions"><button class="action edit" onclick="placeholder('edit')">✏️</button><button class="action del" onclick="placeholder('delete')">🗑️</button></td></tr>
-            <tr><td>Ahmed</td><td>ahmed@example.com</td><td>+20 100 888 9999</td><td>General Fitness</td><td>Active</td><td class="td-actions"><button class="action edit" onclick="placeholder('edit')">✏️</button><button class="action del" onclick="placeholder('delete')">🗑️</button></td></tr>
-            <tr><td>Mai</td><td>mai2@example.com</td><td>+20 100 999 0000</td><td>Muscle Gain</td><td>Active</td><td class="td-actions"><button class="action edit" onclick="placeholder('edit')">✏️</button><button class="action del" onclick="placeholder('delete')">🗑️</button></td></tr>
           </tbody>
         </table>
       </div>
@@ -83,34 +63,6 @@
 
   <footer class="container footer">Built for CSCE 4502 — Trainify Frontend Demo</footer>
 
-  <script>
-    // placeholder for row actions
-    function placeholder(action){
-      alert('Placeholder: ' + action + ' (no backend).');
-    }
-
-    // client-side search/filter by name
-    const nameSearch = document.getElementById('nameSearch');
-    const table = document.getElementById('clientsTable');
-    const rows = Array.from(table.querySelectorAll('tbody tr'));
-    const countEl = document.getElementById('count');
-
-    function updateCount(n){ countEl.textContent = n; }
-    updateCount(rows.length);
-
-    nameSearch.addEventListener('input', function(){
-      const q = this.value.trim().toLowerCase();
-      let visible = 0;
-      rows.forEach(r=>{
-        const name = r.children[0].textContent.toLowerCase();
-        if(name.includes(q)) { r.style.display = ''; visible++; }
-        else { r.style.display = 'none'; }
-      });
-      updateCount(visible || 0);
-    });
-
-    // prevent enter on search topbar
-    document.querySelectorAll('.search-input').forEach(input => input.addEventListener('keydown', e => { if(e.key === 'Enter') e.preventDefault(); }));
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

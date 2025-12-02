@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trainify — Client Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+      <div class="container topbar-inner">
+          <a class="brand" href="index.html">
+             <div class="logo-flag"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#2E4AA3"/><path d="M7 13 L10 10 L13 13 L17 9" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+             <div class="brand-text">Trainify</div>
+          </a>
+          <nav class="topbar-actions">
+              <a class="btn ghost" href="client-list.html">Back to List</a>
+          </nav>
+      </div>
+  </header>
+
+  <main class="container page-card">
+    <div class="card form-card view-content">
+      <div class="card-header">
+        <h2 id="viewName">Loading...</h2>
+        <p class="muted">Client Details</p>
+      </div>
+
+      <div class="grid-2 view-grid">
+        <div class="feature-card">
+            <h3>Contact Info</h3>
+            <p><strong>Email:</strong> <span id="viewEmail"></span></p>
+            <p><strong>Phone:</strong> <span id="viewPhone"></span></p>
+        </div>
+        <div class="feature-card">
+            <h3>Fitness Profile</h3>
+            <p><strong>Goal:</strong> <span id="viewGoal"></span></p>
+            <p><strong>Status:</strong> Active Member</p>
+        </div>
+      </div>
+
+      <div class="api-section">
+        <h3>Suggested Exercises (API)</h3>
+        <p class="muted">Fetched from Wger Workout Manager</p>
+        <ul id="exerciseList" class="api-list">
+           </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer class="container footer">© 2025 Trainify</footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
