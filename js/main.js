@@ -281,7 +281,6 @@ async function initView() {
     note.className = 'muted';
     note.style.fontSize = '0.85rem';
     note.style.marginTop = '1rem';
-    note.textContent = `⚠️ Using fallback ${client.goal}-specific exercises. API temporarily unavailable.`;
     document.querySelector('.api-section').appendChild(note);
   }
 }
