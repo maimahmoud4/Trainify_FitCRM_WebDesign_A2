@@ -177,6 +177,12 @@ function initList() {
 /**
  * PAGE: client-view.html (Page 3)
  */
+/**
+ * EASIEST WORKING SOLUTION
+ * Replace your entire initView() function with this
+ * Uses allorigins.win - a free, reliable CORS proxy
+ */
+
 async function initView() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
@@ -193,26 +199,19 @@ async function initView() {
   document.getElementById('viewPhone').textContent = client.phone;
   document.getElementById('viewGoal').textContent = client.goal;
   
-  // Fetch External API (Wger)
+  // Fetch External API
   const exerciseList = document.getElementById('exerciseList');
-  exerciseList.innerHTML = '<li>Loading exercises...</li>';
+  exerciseList.innerHTML = '<li>Loading exercises from Wger API...</li>';
 
   try {
-    // FINAL FIX: Switching to a different, reliable public CORS-Anywhere Demo server.
+    // Use allorigins.win proxy - it's free and reliable
     const targetUrl = 'https://wger.de/api/v2/exercise/?language=2&limit=5';
-    // Note: The CORS-Anywhere Demo server URL structure.
-    const proxyUrl = `https://cors-anywhere.herokuapp.com/${targetUrl}`;
-
-    // Note: This proxy requires a specific header to activate its demo mode.
-    const response = await fetch(proxyUrl, {
-        headers: {
-            'x-requested-with': 'XMLHttpRequest' 
-        }
-    });
+    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`;
+    
+    const response = await fetch(proxyUrl);
     
     if (!response.ok) throw new Error('Network response was not ok');
     
-    // The response is the raw JSON from Wger
     const data = await response.json();
     
     exerciseList.innerHTML = '';
@@ -220,7 +219,7 @@ async function initView() {
     if (data.results && data.results.length > 0) {
       data.results.forEach(ex => {
         const li = document.createElement('li');
-        // Clean up HTML tags and shorten description
+        // Clean HTML tags from description
         const cleanDesc = ex.description 
           ? ex.description.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 100) + "..." 
           : "No description available.";
@@ -228,14 +227,62 @@ async function initView() {
         li.innerHTML = `<strong>${ex.name}</strong><br><small>${cleanDesc}</small>`;
         exerciseList.appendChild(li);
       });
+      
+      // Add success message
+      const note = document.createElement('p');
+      note.className = 'muted';
+      note.style.fontSize = '0.85rem';
+      note.style.marginTop = '1rem';
+      note.style.color = '#28a745';
+      note.textContent = '✓ Successfully fetched 5 exercises from Wger Workout Manager API';
+      document.querySelector('.api-section').appendChild(note);
     } else {
-      exerciseList.innerHTML = '<li>No exercises found.</li>';
+      throw new Error('No exercises found');
     }
 
   } catch (error) {
-    console.error("Fetch error:", error);
-    // Final, non-technical error message for the user
-    exerciseList.innerHTML = '<li>Error loading exercises. The public proxy service may be temporarily unavailable.</li>';
+    console.error("API fetch error:", error);
+    
+    // Fallback to goal-specific exercises
+    const mockExercises = {
+      'Weight Loss': [
+        { name: 'High-Intensity Interval Training (HIIT)', desc: 'Alternating short bursts of intense exercise with recovery periods for maximum calorie burn.' },
+        { name: 'Jump Rope', desc: 'Effective cardio exercise that burns calories quickly and improves coordination.' },
+        { name: 'Burpees', desc: 'Full-body exercise combining strength and cardio for efficient fat burning.' },
+        { name: 'Mountain Climbers', desc: 'Dynamic core and cardio exercise that elevates heart rate.' },
+        { name: 'Cycling', desc: 'Low-impact cardio perfect for sustained calorie burning and endurance.' }
+      ],
+      'Muscle Gain': [
+        { name: 'Barbell Squats', desc: 'Compound exercise targeting quads, hamstrings, and glutes for lower body mass.' },
+        { name: 'Bench Press', desc: 'Essential upper body exercise for chest, shoulders, and triceps development.' },
+        { name: 'Deadlifts', desc: 'Full-body compound lift building overall strength and muscle mass.' },
+        { name: 'Pull-ups', desc: 'Bodyweight exercise for back and bicep development.' },
+        { name: 'Overhead Press', desc: 'Shoulder-focused compound movement for upper body strength.' }
+      ],
+      'General Fitness': [
+        { name: 'Push-ups', desc: 'Classic upper body exercise targeting chest, shoulders, and triceps.' },
+        { name: 'Squats', desc: 'Fundamental lower body exercise for legs and glutes.' },
+        { name: 'Plank', desc: 'Core strengthening exercise building stability and endurance.' },
+        { name: 'Lunges', desc: 'Single-leg exercise improving balance and leg strength.' },
+        { name: 'Yoga Flow', desc: 'Flexibility and mindfulness practice improving overall wellness.' }
+      ]
+    };
+    
+    const exercises = mockExercises[client.goal] || mockExercises['General Fitness'];
+    
+    exerciseList.innerHTML = '';
+    exercises.forEach(ex => {
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>${ex.name}</strong><br><small>${ex.desc}</small>`;
+      exerciseList.appendChild(li);
+    });
+    
+    const note = document.createElement('p');
+    note.className = 'muted';
+    note.style.fontSize = '0.85rem';
+    note.style.marginTop = '1rem';
+    note.textContent = `⚠️ Using fallback ${client.goal}-specific exercises. API temporarily unavailable.`;
+    document.querySelector('.api-section').appendChild(note);
   }
 }
 
