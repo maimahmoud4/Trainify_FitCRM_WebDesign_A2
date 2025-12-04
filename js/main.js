@@ -1,4 +1,3 @@
-// js/main.js
 
 /**
  * Data Management (LocalStorage)
@@ -22,7 +21,7 @@ function generateId() {
 }
 
 /**
- * PAGE: add-client.html (Handles Add AND Edit)
+ * PAGE: add-client.html 
  */
 function initForm() {
   const form = document.getElementById('clientForm');
@@ -176,12 +175,8 @@ function initList() {
 
 /**
  * PAGE: client-view.html (Page 3)
- */
-/**
- * EASIEST WORKING SOLUTION
- * Replace your entire initView() function with this
- * Uses allorigins.win - a free, reliable CORS proxy
- */
+ **/
+
 
 async function initView() {
   const params = new URLSearchParams(window.location.search);
