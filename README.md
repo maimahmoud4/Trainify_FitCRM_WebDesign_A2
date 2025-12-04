@@ -8,9 +8,7 @@ This project fulfills the requirements of **CSCE 4502 - Assignment #2**.
 
 ##  Live Application & Repository
 
-| Type | Link | 
-| :--- | :--- | :--- |
-| **Live App Link** | (https://trainifyfitcrm.netlify.app/)  |
+ **Live App Link** : (https://trainifyfitcrm.netlify.app/)  
 
 ---
 
