@@ -22,7 +22,7 @@ This is a **Frontend-only** application (HTML, CSS, JavaScript).
 | **API Integration** | **Wger REST API** | **Implemented:** Fetches 5 suggested exercises for the Client View page. |
 | **Design** | **Responsive Design** | **Implemented:** Uses CSS Flexbox/Grid and works well on desktop and mobile. |
 | **Validation** | **JavaScript Validation** | **Implemented:** Includes checks for email format and required fields. |
-| **Deployment** | **Netlify ** | Required for submission. |
+| **Deployment** | **Netlify** | Required for submission. |
 
 ---
 
